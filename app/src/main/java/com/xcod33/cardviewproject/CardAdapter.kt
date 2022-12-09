@@ -1,0 +1,24 @@
+package com.xcod33.cardviewproject
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.xcod33.cardviewproject.databinding.CardCellBinding
+
+
+class CardAdapter(
+    private val movie: List<Movie>,
+    private val clickListener: MovieClickListener
+): RecyclerView.Adapter<CardViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+        val from = LayoutInflater.from(parent.context)
+        val binding = CardCellBinding.inflate(from, parent, false)
+        return CardViewHolder(binding, clickListener)
+    }
+
+    override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
+        holder.bindMovie(movie[position])
+    }
+
+    override fun getItemCount(): Int = movie.size
+}
